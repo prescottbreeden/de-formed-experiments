@@ -32,10 +32,3 @@ export const useComposedForm = <T>(v: ValidationObject<T>, data: T) => {
   }
 }
 
-export const useFormController = <T>(
-  v: ValidationObject<T>,
-  provider: any,
-  data: T
-) => ({
-  ...v,
-})

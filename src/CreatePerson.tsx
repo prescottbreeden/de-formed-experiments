@@ -1,9 +1,9 @@
 import React from 'react'
 import { FormContext, useFormProvider } from './useForm'
 import { PersonForm } from './PersonForm'
+import { Pet } from './usePetValidation'
 import { Query } from './fakeAPI'
 import { usePersonValidation } from './usePersonValidation'
-import { Pet } from './usePetValidation'
 
 export type Person = {
   id: string
@@ -23,8 +23,7 @@ const emptyPerson = () => ({
   },
 })
 
-interface CreatePersonProps {}
-export const CreatePerson: React.FC<CreatePersonProps> = () => {
+export const CreatePerson: React.FC = () => {
   const [person, setPerson] = React.useState(emptyPerson)
 
   const { provider, resetValidations, validateSubmit } =
@@ -36,9 +35,8 @@ export const CreatePerson: React.FC<CreatePersonProps> = () => {
       ...data,
     }))
 
-  const handleSubmit = () => {
-    validateSubmit(() => Query.submit(person))
-  }
+  const handleSubmit = () =>
+    validateSubmit(() => Query.submit(person).then(provider.setAPIerrors))
 
   const handleReset = () => {
     resetValidations()

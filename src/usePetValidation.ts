@@ -2,6 +2,7 @@ import { is, required } from '@de-formed/base'
 import { useValidation } from '@de-formed/react-validations'
 
 export type Pet = {
+  id: string
   name: string
   sex: string
 }

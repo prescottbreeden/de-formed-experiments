@@ -11,7 +11,7 @@ export const usePersonValidation = () => {
     pet: [
       {
         error: 'Pet is invalid',
-        validation: validatePet
+        validation: ({ pet }) => validatePet(pet)
       }
     ]
   })

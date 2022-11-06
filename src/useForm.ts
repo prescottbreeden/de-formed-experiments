@@ -1,7 +1,7 @@
 import React from 'react'
 import { ValidationObject, ValidationState } from '@de-formed/base'
 
-export const FormContext = React.createContext({})
+export const FormContext = React.createContext<any>({})
 export const useForm = () => React.useContext(FormContext)
 
 export const useFormProvider = <T>(v: ValidationObject<T>, data: T) => {
@@ -20,12 +20,10 @@ export const useFormProvider = <T>(v: ValidationObject<T>, data: T) => {
       setSubmitFailed,
       submitFailed,
     },
-    validateSubmit: async (callback: any) => {
+    validateSubmit: (callback: any) => {
       if (v.validateAll(data)) {
         setSubmitFailed(false)
-        const result = await callback()
-        // this is super presumptive
-        setAPIerrors(result)
+        callback()
       } else {
         setSubmitFailed(true)
       }
@@ -34,5 +32,6 @@ export const useFormProvider = <T>(v: ValidationObject<T>, data: T) => {
       setResetValidation((prev) => !prev)
       setSubmitFailed(false)
     },
+    validationObject: v
   }
 }

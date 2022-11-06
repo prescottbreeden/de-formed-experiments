@@ -1,5 +1,10 @@
+import { ValidationState } from '@de-formed/base'
 import { Validation } from '@de-formed/node-validations'
 import { Person } from './CreatePerson'
+
+type NestedValidationState = {
+  [key: string]: ValidationState
+}
 
 export const Query = {
   async submit(data: Person) {
@@ -17,10 +22,12 @@ export const Query = {
         },
       ],
     })
-    return Promise.resolve(v.validateAll(data)
-      ? {}
-      : {
-          [(data as any).id]: v.validationState,
-        })
+    return Promise.resolve(
+      v.validateAll(data)
+        ? ({} as NestedValidationState)
+        : {
+            [(data as any).id]: v.validationState,
+          } as NestedValidationState
+    )
   },
 }
