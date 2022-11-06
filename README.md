@@ -1,3 +1,11 @@
+# Install
+- clone repo
+- `npm i` or `yarn`
+- `npm run build` or `yarn build`
+- `open index.html`
+
+Repo is using esbuild so there is no hot loading
+
 ## Boilerplate Setup
 Types, empty state, and validation schemas
 
