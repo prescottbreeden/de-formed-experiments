@@ -1,0 +1,3 @@
+export const SUBMIT_FAILED = '[SUBMIT FAILED]'
+export const API_ERRORS = '[API ERRORS]'
+export const RESET_VALIDATIONS = '[RESET VALIDATIONS]'
