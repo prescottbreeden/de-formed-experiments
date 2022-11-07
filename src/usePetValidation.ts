@@ -5,6 +5,7 @@ export type Pet = {
   id: string
   name: string
   sex: string
+  dancesTo?: string
 }
 
 export const usePetValidation = () => {
@@ -14,5 +15,6 @@ export const usePetValidation = () => {
       required(),
       is((s: string) => s === 'm' || s === 'f', 'must be m or f'),
     ],
+    dancesTo: [is('Disco')]
   })
 }

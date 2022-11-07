@@ -1,5 +1,5 @@
 import React from 'react'
-import { FieldText } from './FieldText'
+import { FieldText } from '@looker/components'
 import { Person, usePersonValidation } from './usePersonValidation'
 import { Pet } from './usePetValidation'
 import { PetForm } from './PetForm'

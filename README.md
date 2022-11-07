@@ -85,23 +85,30 @@ export const CreatePerson: React.FC = () => {
       ...data,
     }))
 
-  const handleSubmit = () => {
-    // Query.submit(person) contains the business logic
-    validateSubmit(() => Query.submit(person)) // handles validation
-  }
+  const handleSubmit = () =>
+    validateSubmit(() => Query.submit(person).then(provider.setAPIerrors))
 
   const handleReset = () => {
     resetValidations()
+    // only way to auto handle form state is to receive the state setter and
+    // store the intial state of the form - this behavior is not super common,
+    // but there are times where a dev will need to reset the state of a form
+    // for other reasons and I think when they do they should probably handle
+    // what state they want to set for the form data.
     setPerson(emptyPerson())
   }
 
+  // role is used to create form landmark, which is optional for a11y, but not
+  // super descriptive with the default of "form" either
   return (
     <>
       <FormContext.Provider value={provider}>
-        <h2>Create Person</h2>
-        <PersonForm data={person} onChange={handleChange} />
-        <button onClick={handleSubmit}>Submit</button>
-        <button onClick={handleReset}>Reset</button>
+        <div role="Create Person Form">
+          <h2>Create Person</h2>
+          <PersonForm data={person} onChange={handleChange} />
+          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={handleReset}>Reset</button>
+        </div>
       </FormContext.Provider>
     </>
   )
@@ -119,18 +126,29 @@ form elements.
 ```tsx
 export const PetForm: React.FC<PetFormProps> = ({ data, onChange }) => {
   const v = usePetValidation()
-  useComposedForm<Pet>(v, data) // <-- handles sideEffects
+  useComposedForm<Pet>(v, data)
 
-  const handleChange = (event: any) => {
-    onChange({
-      [event.target.name]: event.target.value,
-    })
-  }
+  const handleChange = (event: any) =>
+    onChange({ [event.target.name]: event.target.value })
+
+  const handleSelect = (value: string) => onChange({ dancesTo: value })
+
   return (
     <>
       <Validate validation={{ v, data }}>
         <FieldText name="name" onChange={handleChange} />
         <FieldText name="sex" onChange={handleChange} />
+        <FieldSelect
+          name="dancesTo"
+          onChange={handleSelect}
+          options={[
+            { disabled: true, selected: true, value: '-- select an option --' } as any,
+            { value: 'Ballet' },
+            { value: 'Ballroom' },
+            { value: 'Club Music' },
+            { value: 'Disco' },
+          ]}
+        />
       </Validate>
     </>
   )
