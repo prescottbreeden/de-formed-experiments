@@ -5,7 +5,11 @@
 - `open index.html`
 
 Repo is using esbuild so there is no hot loading. If you want to
-leverage port forwarding, run `python3 -m http.server {port}`
+leverage port forwarding from your cloudtop: 
+```
+cd public
+python3 -m http.server {port}
+```
 
 looks like there are some esbuild bugs with @looker/components. will need
 to delete the invalid export statements that are bugs to build.
