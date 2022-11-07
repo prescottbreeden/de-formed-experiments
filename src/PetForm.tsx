@@ -1,9 +1,9 @@
 import React from 'react'
 import { FieldText } from './FieldText'
-import { useComposedForm } from './useMagicForm'
-import { usePetValidation } from './usePetValidation'
 import { Pet } from './usePetValidation'
 import { Validate } from './Validate'
+import { useComposedForm } from './useMagicForm'
+import { usePetValidation } from './usePetValidation'
 
 interface PetFormProps {
   data: Pet

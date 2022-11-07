@@ -4,6 +4,9 @@ import { ValidationObject, ValidationState } from '@de-formed/base'
 export const FormContext = React.createContext<any>({})
 export const useForm = () => React.useContext(FormContext)
 
+// useFormProvider generates everything needed to handle sideEffects across
+// form components that have no knowledge of their place in the hierarchy. This
+// is essential for forms to be truly composable
 export const useFormProvider = <T>(v: ValidationObject<T>, data: T) => {
   const [submitFailed, setSubmitFailed] = React.useState<boolean>(false)
   const [APIerrors, setAPIerrors] = React.useState<{
@@ -20,7 +23,7 @@ export const useFormProvider = <T>(v: ValidationObject<T>, data: T) => {
       setSubmitFailed,
       submitFailed,
     },
-    validateSubmit: (callback: any) => {
+    validateSubmit: (callback: () => any): void => {
       if (v.validateAll(data)) {
         setSubmitFailed(false)
         callback()
@@ -28,7 +31,7 @@ export const useFormProvider = <T>(v: ValidationObject<T>, data: T) => {
         setSubmitFailed(true)
       }
     },
-    resetValidations: () => {
+    resetValidations: (): void => {
       setResetValidation((prev) => !prev)
       setSubmitFailed(false)
     },

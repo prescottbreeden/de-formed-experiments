@@ -1,32 +1,20 @@
 import React from 'react'
-import { ValidationObject } from '@de-formed/base'
 
-type FieldTextProps<T> = {
+type FieldTextProps = {
   name: string
   onChange: (event: any) => void
-  validate?: {
-    v: ValidationObject<T>
-    data: T
-  }
+  validationMessage?: { error?: string }
   value?: string
   onBlur?: any
 }
-export const FieldText: React.FC<FieldTextProps<any>> = ({
+// TODO replace with looker component
+export const FieldText: React.FC<FieldTextProps> = ({
   name,
   onBlur,
   onChange,
-  validate,
+  validationMessage,
   value
 }) => {
-  const handleBlur = validate
-    ? validate.v.validateOnBlur(validate.data)
-    : onBlur
-
-  const handleChange = validate
-    ? validate.v.validateOnChange(onChange, validate.data)
-    : onChange
-
-  const val = value ? value : validate?.data[name] ?? ''
 
   return (
     <>
@@ -37,14 +25,12 @@ export const FieldText: React.FC<FieldTextProps<any>> = ({
             id={name}
             type="string"
             name={name}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={val}
+            onBlur={onBlur}
+            onChange={onChange}
+            value={value}
           />
         </div>
-        {validate && validate.v.getError(name) && (
-          <p>{validate.v.getError(name)}</p>
-        )}
+        {validationMessage?.error && <p>{validationMessage.error ?? ''}</p>}
       </div>
     </>
   )

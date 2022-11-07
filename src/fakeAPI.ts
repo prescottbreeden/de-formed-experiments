@@ -1,6 +1,6 @@
 import { ValidationState } from '@de-formed/base'
 import { Validation } from '@de-formed/node-validations'
-import { Person } from './CreatePerson'
+import {Person} from './usePersonValidation'
 
 type NestedValidationState = {
   [key: string]: ValidationState

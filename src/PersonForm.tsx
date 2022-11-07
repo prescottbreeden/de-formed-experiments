@@ -1,10 +1,10 @@
 import React from 'react'
 import { FieldText } from './FieldText'
-import { Person } from './CreatePerson'
+import { Person, usePersonValidation } from './usePersonValidation'
 import { Pet } from './usePetValidation'
 import { PetForm } from './PetForm'
+import { Validate } from './Validate'
 import { useComposedForm } from './useMagicForm'
-import { usePersonValidation } from './usePersonValidation'
 
 interface PersonFormProps {
   data: Person
@@ -26,8 +26,10 @@ export const PersonForm: React.FC<PersonFormProps> = ({ data, onChange }) => {
 
   return (
     <>
-      <FieldText name="name" onChange={handleChange} validate={{ v, data }} />
-      <FieldText name="eyes" onChange={handleChange} validate={{ v, data }} />
+      <Validate validation={{ v, data }}>
+        <FieldText name="name" onChange={handleChange} />
+        <FieldText name="eyes" onChange={handleChange} />
+      </Validate>
       <PetForm onChange={handlePetChange} data={data.pet} />
     </>
   )
