@@ -263,7 +263,8 @@ interface ValidateProps {
 // this component wrapper.
 export const Validate: React.FC<ValidateProps> = ({ validation, children }) => {
   return React.Children.map(children, (child) => {
-    // components that don't return events can be caught
+    // components that don't return events can be caught - duplication is
+    // intentional for now because I'm lazy and this was just for POC
     if (child.type.displayName === 'FieldSelect') {
       // if validation is present, fire both an explicit onBlur event handler in
       // addition to running blur validation
