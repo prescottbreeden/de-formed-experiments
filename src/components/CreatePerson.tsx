@@ -1,8 +1,9 @@
 import React from 'react'
-import { FormContext, useFormProvider } from './useForm'
+import { FormContext, useFormProvider } from '../hooks/useForm'
 import { PersonForm } from './PersonForm'
-import { Query } from './fakeAPI'
-import { emptyPerson, Person, usePersonValidation } from './usePersonValidation'
+import { Query } from '../fakeAPI'
+import { emptyPerson, Person } from '../types'
+import { usePersonValidation } from '../validations/usePersonValidation'
 
 export const CreatePerson: React.FC = () => {
   const [person, setPerson] = React.useState(emptyPerson)
@@ -21,11 +22,6 @@ export const CreatePerson: React.FC = () => {
 
   const handleReset = () => {
     resetValidations()
-    // only way to auto handle form state is to receive the state setter and
-    // store the intial state of the form - this behavior is not super common,
-    // but there are times where a dev will need to reset the state of a form
-    // for other reasons and I think when they do they should probably handle
-    // what state they want to set for the form data.
     setPerson(emptyPerson())
   }
 

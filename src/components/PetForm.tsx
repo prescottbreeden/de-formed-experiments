@@ -1,9 +1,9 @@
 import React from 'react'
 import { FieldSelect, FieldText } from '@looker/components'
-import { Pet } from './usePetValidation'
+import { Pet } from '../types'
 import { Validate } from './Validate'
-import { useComposedForm } from './useMagicForm'
-import { usePetValidation } from './usePetValidation'
+import { useComposedForm } from '../hooks/useComposedForm'
+import { usePetValidation } from '../validations/usePetValidation'
 
 interface PetFormProps {
   data: Pet

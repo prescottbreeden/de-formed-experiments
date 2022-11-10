@@ -1,7 +1,7 @@
 import React from 'react'
 import { ValidationObject } from '@de-formed/base'
-import { useRedux } from './redux/useRedux'
-import { API_ERRORS, RESET_VALIDATIONS, SUBMIT_FAILED } from './redux/_keys'
+import { useRedux } from '../redux/useRedux'
+import { API_ERRORS, RESET_VALIDATIONS, SUBMIT_FAILED } from '../redux/_keys'
 
 export const useSideEffects = <T>(v: ValidationObject<T>, data: T) => {
   const { data: submitFailed } = useRedux<boolean>(SUBMIT_FAILED)

@@ -1,4 +1,4 @@
-import { Person } from './usePersonValidation'
+import { Person } from '../types'
 import { required, ValidationSchema } from '@de-formed/base'
 
 export const PersonSchema: ValidationSchema<Person> = {

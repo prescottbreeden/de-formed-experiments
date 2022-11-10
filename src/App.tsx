@@ -1,5 +1,5 @@
 import React from 'react'
-import { CreatePerson } from './CreatePerson'
+import { CreatePerson } from './components/CreatePerson'
 
 export const App = () => {
   return (

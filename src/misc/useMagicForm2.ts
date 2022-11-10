@@ -1,8 +1,8 @@
 import React from 'react'
 import { ValidationSchema } from '@de-formed/base'
 import { useValidation } from '@de-formed/react-validations'
-import { API_ERRORS, RESET_VALIDATIONS, SUBMIT_FAILED } from './redux/_keys'
-import { useRedux } from './redux/useRedux'
+import { API_ERRORS, RESET_VALIDATIONS, SUBMIT_FAILED } from '../redux/_keys'
+import { useRedux } from '../redux/useRedux'
 
 export const useMagicForm = <T>(schema: ValidationSchema<T>, data: T) => {
   // --[ Redux ]---------------------------------------------------------------

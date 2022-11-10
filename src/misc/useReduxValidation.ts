@@ -26,8 +26,8 @@ import {
   ValidationSchema,
   ValidationState,
 } from '@de-formed/base'
-import { useRedux } from './redux/useRedux'
-import { API_ERRORS, RESET_VALIDATIONS, SUBMIT_FAILED } from './redux/_keys'
+import { useRedux } from '../redux/useRedux'
+import { API_ERRORS, RESET_VALIDATIONS, SUBMIT_FAILED } from '../redux/_keys'
 
 /**
  * A hook that can be used to generate an object containing functions and

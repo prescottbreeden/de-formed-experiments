@@ -1,6 +1,6 @@
 import React from 'react'
-import { useRedux } from './redux/useRedux'
-import { API_ERRORS, RESET_VALIDATIONS, SUBMIT_FAILED } from './redux/_keys'
+import { useRedux } from '../redux/useRedux'
+import { API_ERRORS, RESET_VALIDATIONS, SUBMIT_FAILED } from '../redux/_keys'
 
 export const FormContext = React.createContext<any>({})
 export const useForm = () => React.useContext(FormContext)
